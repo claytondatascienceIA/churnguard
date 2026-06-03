@@ -196,7 +196,8 @@ elif pagina == "🔮  Preditor de Churn":
         for i,v in enumerate([prob[1],prob[0]]):
             ax.text(v+0.01,i,f"{v*100:.1f}%",va="center",fontsize=11)
         ax.set_xlim(0,1.15); ax.set_facecolor("#0c1220"); fig.patch.set_facecolor("#0c1220")
-        ax.tick_params(colors="white"); [s.set_visible(False) for s in ax.spines.values()]
+        ax.tick_params(colors="white")
+        ax.spines["top"].set_visible(False); ax.spines["right"].set_visible(False)
         st.pyplot(fig); plt.close()
 
 # ─── PAINEL ───
@@ -209,9 +210,8 @@ elif pagina == "📊  Painel Analítico":
         churn_plano = df.groupby("tipo_plano")["churn"].mean()*100
         ax.bar(churn_plano.index, churn_plano.values, color=["#378ADD","#1D9E75","#D85A30"], edgecolor="none", width=0.5)
         ax.set_ylabel("% Churn",color="white"); ax.set_facecolor("#0c1220"); fig.patch.set_facecolor("#0c1220")
-        ax.tick_params(colors="white"); [s.set_visible(False) for s in ["top","right"] if s in ax.spines]
-        ax.spines["top"].set_visible(False); ax.spines["right"].set_visible(False)
         ax.tick_params(colors="white")
+        ax.spines["top"].set_visible(False); ax.spines["right"].set_visible(False)
         st.pyplot(fig); plt.close()
 
     with c2:
